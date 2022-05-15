@@ -14,8 +14,8 @@ import javax.persistence.*;
  * @author marie
  */
 @Entity
-@Table(name = "usuario")
-public class Usuario implements Serializable {
+@Table(name = "cliente")
+public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -26,21 +26,25 @@ public class Usuario implements Serializable {
     private String nome;
     
     @Column(nullable = false, length = 120, unique = true)
-    private String login;
+    private String email;
     
     @Column(nullable = false, length = 100)
-    private String senha;
+    private String cpf;
+    
+    @Column(nullable = false, length = 100)
+    private String rg;
     
     private LocalDate ultimoAcesso;
 
-    public Usuario() {
-    }    
-
-    public Usuario(Long id, String nome, String login, String senha) {
+    public Cliente() {
+    }
+    
+    public Cliente(Long id, String nome, String email, String cpf, String rg) {
         this.id = id;
         this.nome = nome;
-        this.login = login;
-        this.senha = senha;
+        this.email = email;
+        this.cpf = cpf;
+        this.rg = rg;
     }
     
     public Long getId() {
@@ -49,7 +53,7 @@ public class Usuario implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }   
+    }      
 
     public String getNome() {
         return nome;
@@ -59,21 +63,29 @@ public class Usuario implements Serializable {
         this.nome = nome;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }  
 
     public LocalDate getUltimoAcesso() {
         return ultimoAcesso;
@@ -81,17 +93,7 @@ public class Usuario implements Serializable {
 
     public void setUltimoAcesso(LocalDate ultimoAcesso) {
         this.ultimoAcesso = ultimoAcesso;
-    }
-    
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuario)) {
-            return false;
-        }
-        Usuario other = (Usuario) object;
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
-    }
+    }   
     
     @Override//override por herança sobescreve
     public int hashCode() { //Esse método pertence à classe pai
@@ -99,10 +101,20 @@ public class Usuario implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
+    
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Cliente)) {
+            return false;
+        }
+        Cliente other = (Cliente) object;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
+    }
 
     @Override
     public String toString() {
-        return "br.com.senac.entidade.Usuario[ id=" + id + " ]";
+        return "br.com.senac.entidade.Cliente[ id=" + id + " ]";
     }
     
 }

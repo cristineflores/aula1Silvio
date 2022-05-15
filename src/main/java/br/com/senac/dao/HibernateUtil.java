@@ -5,8 +5,14 @@
  */
 package br.com.senac.dao;
 
+//import br.com.senac.entidade.Cliente;
+import br.com.senac.entidade.Cliente;
+import br.com.senac.entidade.Fornecedor;
+import br.com.senac.entidade.Produto;
 import br.com.senac.entidade.Usuario;
-import org.hibernate.*;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
@@ -23,7 +29,10 @@ public class HibernateUtil {
     static {
         try {
             Configuration cfg = new Configuration();
-            cfg.addAnnotatedClass(Usuario.class);
+            cfg.addAnnotatedClass(Usuario.class);//cada classe que for criada tem que add essa linha com alterações
+            cfg.addAnnotatedClass(Cliente.class);//cada classe que for criada tem que add essa linha com alterações
+            cfg.addAnnotatedClass(Fornecedor.class);//cada classe que for criada tem que add essa linha com alterações
+            cfg.addAnnotatedClass(Produto.class);//cada classe que for criada tem que add essa linha com alterações
 
             cfg.configure("/META-INF/hibernate.cfg.xml");
             StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().

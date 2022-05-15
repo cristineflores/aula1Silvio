@@ -13,15 +13,15 @@ import org.hibernate.*;
  * @param <T> representa qualquer entidade
  * @param <ID> representa o tipo do id
  */
-public abstract class BaseDaoImpl<T, ID> implements BaseDao<T, ID>{
-    
-    private Transaction transaction;
+public abstract class BaseDaoImpl<T, ID> implements BaseDao<T, ID>{//o t representa todas as clásses de entidade
+  //em cima o abstract diz que essa classe vai ter filho, diz que é uma classe pai   
+    private Transaction transaction;//para salvarOuAlterar e exclhuir ele vai fazer uma transação com o BD pois vai alterar como estava antes
 
-    @Override
+    @Override 
     public void salvarOuAlterar(T entidade, Session sessao) throws HibernateException {
-        transaction = sessao.beginTransaction();
+        transaction = sessao.beginTransaction();//pra pesquisar não precisa
         sessao.saveOrUpdate(entidade);
-        transaction.commit();
+        transaction.commit();//pra pesquisar não precisa
     }
 
     @Override

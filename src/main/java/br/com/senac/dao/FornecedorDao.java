@@ -5,7 +5,7 @@
  */
 package br.com.senac.dao;
 
-import br.com.senac.entidade.Usuario;
+import br.com.senac.entidade.Fornecedor;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -14,8 +14,7 @@ import org.hibernate.Session;
  *
  * @author marie
  */
-public interface UsuarioDao extends BaseDao<Usuario, Long>{
-    List<Usuario> pesquisarTodo(Session sessao) throws HibernateException;
+public interface FornecedorDao extends BaseDao<Fornecedor, Long>{
     
-    List<Usuario> pesquisarPorNome(String nome, Session sessao) throws HibernateException;        
+    List<Fornecedor> pesquisarPorNome(String nome, Session sessao) throws HibernateException;        
 }
